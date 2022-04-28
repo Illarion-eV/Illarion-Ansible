@@ -7,7 +7,7 @@ Illarion Server Configuration
 ## Requirements
 
 - Ansible
-- Debian server reachable on ssh host `illarion-ansible`
+- Debian server reachable on ssh host `illarion-ansible` with `sudo` access
 
 ## Server configuration
 
