@@ -11,4 +11,4 @@ Illarion Server Configuration
 
 ## Server configuration
 
-- `ansible-playbook illarion.yaml -i inventory.txt`
+- `./configure`
