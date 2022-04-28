@@ -1,0 +1,1 @@
+ansible-playbook illarion.yaml -i inventory.txt
