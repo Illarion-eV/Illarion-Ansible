@@ -8,6 +8,7 @@ Illarion Server Configuration
 
 - Ansible
 - Debian server reachable on ssh host `illarion-ansible` with `sudo` access
+- ansible-galaxy collection install community.genera
 
 ## Server configuration
 

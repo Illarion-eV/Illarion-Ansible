@@ -1,0 +1,27 @@
+- name: ufw installed
+  become: yes
+  ansible.builtin.apt:
+    name: "ufw"
+    state: "present"
+    update_cache: true
+- name: allow ssh
+  become: yes
+  community.general.ufw:
+    rule: "limit"
+    port: "{{ illarion.ssh_port }}"
+    proto: "tcp"
+- name: ufw enabled
+  become: yes
+  community.general.ufw:
+    state: "enabled"
+    policy: "deny"
+    logging: "on"
+- name: ufw rules
+  become: yes
+  community.general.ufw:
+    rule: "allow"
+    port: "{{ item }}"
+    proto: "tcp"
+  loop:
+  - "80"
+  - "443"

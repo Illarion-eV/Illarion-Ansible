@@ -1,0 +1,6 @@
+- name: ldap installed
+  become: yes
+  ansible.builtin.apt:
+    pkg:
+    - slapd
+    - ldap-utils

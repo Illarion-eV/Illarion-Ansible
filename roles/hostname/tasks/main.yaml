@@ -1,0 +1,16 @@
+- name: set hostname
+  become: yes
+  ansible.builtin.hostname:
+    name: "{{ illarion.hostname }}"
+- name: update hosts via hostname
+  become: yes
+  lineinfile:
+    path: /etc/hosts
+    regexp: '{{ illarion.hostname }}'
+    line: '{{ illarion.ip }} {{ illarion.hostname }}'
+- name: update hosts via ip
+  become: yes
+  lineinfile:
+    path: /etc/hosts
+    regexp: '{{ illarion.ip }}'
+    line: '{{ illarion.ip }} {{ illarion.hostname }}'

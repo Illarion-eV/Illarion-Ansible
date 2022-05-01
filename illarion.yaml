@@ -1,4 +1,7 @@
 - name: Setup Illarion Server
   hosts: illarion
   roles:
+  - hostname
+  - ufw
   - ssh
+  - ldap
