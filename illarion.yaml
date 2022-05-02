@@ -1,5 +1,6 @@
 - name: Setup Illarion Server
   hosts: illarion
+  become: yes
   roles:
   - hostname
   - ufw

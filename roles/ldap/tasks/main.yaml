@@ -1,6 +1,48 @@
+- name: debconf requirements installed
+  ansible.builtin.apt:
+    pkg:
+    - debconf
+    - debconf-utils
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+    manager: apt
+- name: set organization
+  ansible.builtin.debconf:
+    name: slapd
+    question: shared/organization
+    value: Illarion e.V.
+    vtype: string
+- name: set domain
+  ansible.builtin.debconf:
+    name: slapd
+    question: slapd/domain
+    value: illarion.org
+    vtype: string
+- name: set admin password
+  no_log: True
+  ansible.builtin.debconf:
+    name: slapd
+    question: slapd/{{ item }}
+    value: "{{ illarion.ldap_pw }}"
+    vtype: password
+  loop:
+  - password1
+  - password2
+  when: "'slapd' not in ansible_facts.packages"
 - name: ldap installed
-  become: yes
   ansible.builtin.apt:
     pkg:
     - slapd
     - ldap-utils
+    - python-ldap
+#- name: set admin password
+#  community.general.ldap_passwd:
+#    dn: cn=admin,dc=illarion,dc=org
+#    passwd: "{{ illarion.ldap_pw }}"
+- name: People ou created
+  community.general.ldap_entry:
+    dn: ou=People,dc=illarion,dc=org
+    objectClass: organizationalUnit
+    server_uri: ldap://
+    bind_dn: cn=admin,dc=illarion,dc=org
+    bind_pw: "{{ illarion.ldap_pw }}"
