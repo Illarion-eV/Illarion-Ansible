@@ -6,3 +6,4 @@
   - ufw
   - ssh
   - ldap
+  - openssl

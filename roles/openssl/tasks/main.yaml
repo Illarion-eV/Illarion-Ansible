@@ -1,0 +1,25 @@
+- name: python requirements installed
+  ansible.builtin.apt:
+    pkg:
+    - python-openssl
+- name: Ensure directory exists for local self-signed TLS certs.
+  file:
+    path: /etc/letsencrypt/live/{{ illarion.hostname }}
+    state: directory
+
+- name: Generate an OpenSSL private key.
+  openssl_privatekey:
+    path: /etc/letsencrypt/live/{{ illarion.hostname }}/privkey.pem
+
+- name: Generate an OpenSSL CSR.
+  openssl_csr:
+    path: /etc/ssl/private/{{ illarion.hostname }}.csr
+    privatekey_path: /etc/letsencrypt/live/{{ illarion.hostname }}/privkey.pem
+    common_name: "{{ illarion.hostname }}"
+
+- name: Generate a Self Signed OpenSSL certificate.
+  openssl_certificate:
+    path: /etc/letsencrypt/live/{{ illarion.hostname }}/fullchain.pem
+    privatekey_path: /etc/letsencrypt/live/{{ illarion.hostname }}/privkey.pem
+    csr_path: /etc/ssl/private/{{ illarion.hostname }}.csr
+    provider: selfsigned
