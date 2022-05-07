@@ -7,9 +7,11 @@ Illarion Server Configuration
 ## Requirements
 
 - Ansible
-- Debian server reachable on ssh host `illarion-ansible` with `sudo` access
-- ansible-galaxy collection install community.genera
+- Vagrant
+- ansible-galaxy collection install community.general
 
-## Server configuration
+## Local Server Configuration
 
+- `vagrant up`
 - `./configure`
+- To reset the host key of the local VM when necessary: `./reset-known-hosts`

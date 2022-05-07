@@ -1,7 +1,7 @@
 - name: python requirements installed
   ansible.builtin.apt:
     pkg:
-    - python-openssl
+    - python3-openssl
 - name: Ensure directory exists for local self-signed TLS certs.
   file:
     path: /etc/letsencrypt/live/{{ illarion.hostname }}

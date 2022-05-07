@@ -34,7 +34,7 @@
     pkg:
     - slapd
     - ldap-utils
-    - python-ldap
+    - python3-ldap
 - name: People ou created
   community.general.ldap_entry:
     dn: ou=People,dc=illarion,dc=org
