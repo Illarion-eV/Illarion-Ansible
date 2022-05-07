@@ -8,7 +8,7 @@ Illarion Server Configuration
 
 - Ansible
 - Vagrant
-- ansible-galaxy collection install community.general
+- `ansible-galaxy collection install community.general`
 
 ## Local Server Configuration
 
