@@ -13,5 +13,6 @@ Illarion Server Configuration
 ## Local Server Configuration
 
 - `vagrant up`
-- `./configure`
+- `ansible-playbook illarion.yaml` or `./configure` as a shortcut
+- To ssh into the VM and explore the result: `vagrant ssh`
 - To reset the host key of the local VM when necessary: `./reset-known-hosts`
